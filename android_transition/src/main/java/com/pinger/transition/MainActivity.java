@@ -1,36 +1,59 @@
 package com.pinger.transition;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.view.Gravity;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ImageView mImageView1;
-    private ImageView mImageView2;
+    private List<Sample> samples;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mImageView1 = (ImageView) findViewById(R.id.image1);
-        mImageView2 = (ImageView) findViewById(R.id.image2);
+        setupWindowAnimations();
+        setupSamples();
+        setupToolbar();
+        setupLayout();
     }
 
-    public void start(View view) {
-        // 单个动画跳转
-        //startActivity(new Intent(this,SecondActivity.class), ActivityOptionsCompat.makeSceneTransitionAnimation(this,mImageView1,"shareImage1").toBundle());
+    private void setupWindowAnimations() {
+        // Re-enter transition is executed when returning to this activity
+        Slide slideTransition = new Slide();
+        slideTransition.setSlideEdge(Gravity.LEFT);
+        slideTransition.setDuration(getResources().getInteger(R.integer.anim_duration_long));
+        getWindow().setReenterTransition(slideTransition);
+        getWindow().setExitTransition(slideTransition);
+    }
 
+    private void setupSamples() {
+        samples = Arrays.asList(
+                new Sample(ContextCompat.getColor(this, R.color.sample_red), "Transitions"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_blue), "Shared Elements"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_green), "View animations"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_yellow), "Circular Reveal Animation")
+        );
+    }
 
-        // 多个动画跳转
-        startActivity(new Intent(MainActivity.this, SecondActivity.class),
-                ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-                        Pair.create((View) mImageView1, "shareImage1"),
-                        Pair.create((View) mImageView2, "shareImage2")).toBundle());
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
 
+    private void setupLayout() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sample_list);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        SamplesRecyclerAdapter samplesRecyclerAdapter = new SamplesRecyclerAdapter(this, samples);
+        recyclerView.setAdapter(samplesRecyclerAdapter);
     }
 }

@@ -16,6 +16,8 @@ import com.pinger.widget.imagepreview.ImagePreview;
  */
 public class TestApplication extends Application {
 
+    private static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -34,5 +36,12 @@ public class TestApplication extends Application {
                 return null;
             }
         });
+
+        mContext = getApplicationContext();
+    }
+
+
+    public static Context getContext(){
+        return mContext;
     }
 }
