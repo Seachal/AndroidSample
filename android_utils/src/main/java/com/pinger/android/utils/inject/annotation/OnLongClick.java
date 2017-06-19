@@ -10,17 +10,17 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @author Pinger
- * @since 2017/6/18 22:48
- * 事件注入，注入的监听需要再次注入
+ * @since 2017/6/19 23:49
+ * 长按事件注解
  */
 
 @Target(METHOD)
 @Retention(RUNTIME)
 @ClickEvent(
-        setter = "setOnClickListener",
-        type = View.OnClickListener.class,
-        callBackMethod = "onClick"
+        setter = "setOnLongClickListener",
+        type = View.OnLongClickListener.class,
+        callBackMethod = "onLongClick"
 )
-public @interface OnClick {
+public @interface OnLongClick {
     int[] value();
 }

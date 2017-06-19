@@ -46,52 +46,59 @@ public class InjectUtils {
             Annotation[] annotations = method.getAnnotations();
             for (Annotation annotation : annotations) {
                 Class<?> annotationType = annotation.annotationType();
-                ClickEvent clickEvent = annotationType.getAnnotation(ClickEvent.class);
-                if (clickEvent == null) continue;
-
-                // 获取点击事件的各个属性
-                String setter = clickEvent.setter();
-                Class<?> type = clickEvent.type();
-                String callBackMethod = clickEvent.callBackMethod();
-
-                // 使用动态代理调用设置监听的方法
-                Map<String, Method> methodMap = new HashMap<>();
-                // 将点击回调的方法作为键，注解的方法作为值，存入代理的方法，
-                // 就是使用注解的方法来代理点击回调的方法
-                methodMap.put(callBackMethod, method);
-
-
-                try {
-                    // 获取注解内部的方法
-                    Method valueMethod = annotationType.getDeclaredMethod("value");
-                    // 存入的ids
-                    int[] ids = (int[]) valueMethod.invoke(annotation);
-
-                    for (int id : ids) {
-                        Method idMethod = clazz.getDeclaredMethod("findViewById");
-                        View view = (View) idMethod.invoke(context, id);
-
-                        if (view == null) return;
-
-                        // 使用反射进行方法的调用
-                        Method setListener = view.getClass().getDeclaredMethod(setter);
-
-                        ListenerInvocationHandler handler = new ListenerInvocationHandler(context, methodMap);
-                        // 生成代理对象
-                        Object proxy = Proxy.newProxyInstance(type.getClassLoader(), new Class[]{type}, handler);
-
-                        // 激活方法
-                        setListener.invoke(view, proxy);
-                    }
-
-                } catch (NoSuchMethodException e) {
-                    Log.e(TAG, "注入事件失败，没有findViewById这个方法");
-                } catch (InvocationTargetException e) {
-                    Log.e(TAG, "注入事件失败，findViewById方法调用失败");
-                } catch (IllegalAccessException e) {
-                    Log.e(TAG, "注入事件失败，findViewById非法访问");
-                }
+                performClickEvent(context, clazz, method, annotation, annotationType);
             }
+        }
+    }
+    
+    /**
+     * 单击事件
+     */
+    private static void performClickEvent(Context context, Class<?> clazz, Method method, Annotation annotation, Class<?> annotationType) {
+        ClickEvent clickEvent = annotationType.getAnnotation(ClickEvent.class);
+        if (clickEvent == null) return;
+
+        // 获取点击事件的各个属性
+        String setter = clickEvent.setter();
+        Class<?> type = clickEvent.type();
+        String callBackMethod = clickEvent.callBackMethod();
+
+        // 使用动态代理调用设置监听的方法
+        Map<String, Method> methodMap = new HashMap<>();
+        // 将点击回调的方法作为键，注解的方法作为值，存入代理的方法，
+        // 就是使用注解的方法来代理点击回调的方法
+        methodMap.put(callBackMethod, method);
+
+
+        try {
+            // 获取注解内部的方法
+            Method valueMethod = annotationType.getDeclaredMethod("value");
+            // 存入的ids
+            int[] viewIds = (int[]) valueMethod.invoke(annotation);
+
+            for (int id : viewIds) {
+                Method findViewById = clazz.getMethod("findViewById", int.class);
+                View view = (View) findViewById.invoke(context, id);
+
+                if (view == null) continue;
+
+                // 使用反射进行方法的调用
+                Method setListener = view.getClass().getMethod(setter, type);
+
+                ListenerInvocationHandler handler = new ListenerInvocationHandler(context, methodMap);
+                // 生成代理对象
+                Object proxy = Proxy.newProxyInstance(type.getClassLoader(), new Class[]{type}, handler);
+
+                // 激活方法
+                setListener.invoke(view, proxy);
+            }
+
+        } catch (NoSuchMethodException e) {
+            Log.e(TAG, "注入事件失败，激活方法失败");
+        } catch (InvocationTargetException e) {
+            Log.e(TAG, "注入事件失败，方法调用失败");
+        } catch (IllegalAccessException e) {
+            Log.e(TAG, "注入事件失败，非法访问");
         }
     }
 
@@ -104,7 +111,7 @@ public class InjectUtils {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             // 获取每个字段的注解
-            BindView bindView = clazz.getAnnotation(BindView.class);
+            BindView bindView = field.getAnnotation(BindView.class);
             // 如果字段上没有注解则跳过
             if (bindView == null) continue;
 

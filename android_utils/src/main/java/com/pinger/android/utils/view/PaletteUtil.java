@@ -1,4 +1,4 @@
-package com.pinger.utils;
+package com.pinger.android.utils.view;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
