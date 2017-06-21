@@ -1,7 +1,5 @@
 package com.pinger.android.utils.inject.annotation;
 
-import android.content.Context;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -16,11 +14,11 @@ import java.util.Map;
 public class ListenerInvocationHandler implements InvocationHandler {
 
 
-    private final Context mContext;
+    private final Object mObject;
     private final Map<String, Method> methodMap;
 
-    public ListenerInvocationHandler(Context context, Map<String, Method> methodMap) {
-        this.mContext = context;
+    public ListenerInvocationHandler(Object object, Map<String, Method> methodMap) {
+        this.mObject = object;
         this.methodMap = methodMap;
     }
 
@@ -67,7 +65,7 @@ public class ListenerInvocationHandler implements InvocationHandler {
             // 不需要代理
             return method.invoke(proxy, args);
         } else {
-            return invocationMethod.invoke(mContext, args);
+            return invocationMethod.invoke(mObject, args);
         }
     }
 }
