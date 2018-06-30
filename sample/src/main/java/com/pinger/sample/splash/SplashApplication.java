@@ -1,4 +1,4 @@
-package com.pinger.develop.splash;
+package com.pinger.sample.splash;
 
 import android.app.Application;
 import android.util.Log;

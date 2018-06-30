@@ -1,4 +1,4 @@
-package com.pinger.develop.splash;
+package com.pinger.sample.splash;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
@@ -11,7 +11,7 @@ import android.view.ViewStub;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pinger.develop.R;
+import com.pinger.sample.R;
 
 import java.lang.ref.WeakReference;
 
