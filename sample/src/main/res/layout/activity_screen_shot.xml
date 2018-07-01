@@ -12,20 +12,34 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-
-        <Button
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:onClick="onSplash"
-            android:text="@string/sample_splash" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:onClick="onScreenShot"
-            android:text="@string/sample_screen_shot" />
+            android:text="截屏" />
 
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onScreenImageView"
+            android:text="ImageView截图" />
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onScreenScrollView"
+            android:text="ScrollView截图" />
 
     </LinearLayout>
 
+
 </ScrollView>
+

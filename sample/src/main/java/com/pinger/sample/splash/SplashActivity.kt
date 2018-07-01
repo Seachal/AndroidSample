@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.ViewStub
 import android.widget.TextView
 import android.widget.Toast
@@ -13,12 +12,12 @@ import com.pinger.sample.R
 
 import java.lang.ref.WeakReference
 
-class MainActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     private val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_splash)
 
         val viewStub = findViewById<ViewStub>(R.id.viewStub)
 
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             // 初始化布局
             initView()
             // 2秒后移除Splash
-            mHandler.postDelayed(DelayRunnable(this@MainActivity, splashFragment), 3000)
+            mHandler.postDelayed(DelayRunnable(this@SplashActivity, splashFragment), 3000)
         }
 
         // 3. 加载主页数据
