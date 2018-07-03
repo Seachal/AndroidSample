@@ -22,4 +22,11 @@ ext {
             constraintlayout  : 'com.android.support.constraint:constraint-layout:1.0.2',
             kotlin            : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.30',
     ]
+
+    signingConfigs = [
+            STORE_PASSWORD: "fungo2018",
+            KEY_PASSWORD  : "fungo2018",
+            KEY_ALIAS     : "fungo",
+            STORE_FILE    : "../config/keystore/fungo.jks"
+    ]
 }
