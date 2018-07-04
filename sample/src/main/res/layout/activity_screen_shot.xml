@@ -1,45 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="ifContentScrolls"
-    android:scrollbars="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-
-    <LinearLayout
+    <!--生成分享图片的布局，位于底层-->
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:layout_height="wrap_content"/>
 
-        <FrameLayout
-            android:id="@+id/container"
+    <ScrollView
+        android:id="@+id/containerScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
+        android:background="@color/white"
+        android:scrollbars="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:onClick="onScreenShot"
-            android:text="截屏" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenShot"
+                android:text="截屏" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenTextView"
+                android:text="TextView截图" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenImageView"
+                android:text="ImageView截图" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenFrameLayout"
+                android:text="FrameLayout截图" />
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:onClick="onScreenImageView"
-            android:text="ImageView截图" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenLinearLayout"
+                android:text="LinearLayout截图" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenRelativeLayout"
+                android:text="RelativeLayout截图" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenScrollView"
+                android:text="ScrollView截图" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenWebView"
+                android:text="WebView截图" />
 
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenListView"
+                android:text="ListView截图" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:onClick="onScreenScrollView"
-            android:text="ScrollView截图" />
-
-    </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenRecyclerView"
+                android:text="RecyclerView截图" />
 
 
-</ScrollView>
+            <!--用来展示生成截图的ImageView-->
+            <ImageView
+                android:id="@+id/showView"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>
 
