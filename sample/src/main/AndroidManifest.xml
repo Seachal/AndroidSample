@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".screenshot.ScreenShotActivity" />
         <activity android:name=".splash.SplashActivity" />
+        <activity android:name=".screenshot.ScreenShotWebViewActivity" />
 
         <service android:name=".splash.InitializeService"/>
 

@@ -85,11 +85,10 @@ object ScreenShotUtils {
         var h = 0
         for (i in 0 until scrollView.childCount) {
             h += scrollView.getChildAt(i).height
-            // 设置子View的背景颜色，不设置默认是黑色的
             scrollView.getChildAt(i).setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
 
-        val bitmap = Bitmap.createBitmap(scrollView.width, h, Bitmap.Config.RGB_565)
+        val bitmap = createBitmap(scrollView.width, h)
         val canvas = Canvas(bitmap)
         scrollView.draw(canvas)
         return bitmap
@@ -113,13 +112,14 @@ object ScreenShotUtils {
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
 
             childView.layout(0, 0, childView.measuredWidth, childView.measuredHeight)
+            childView.setBackgroundColor(Color.parseColor("#FFFFFF"))
             childView.isDrawingCacheEnabled = true
             childView.buildDrawingCache()
             bitmaps.add(childView.drawingCache)
             allitemsheight += childView.measuredHeight
         }
 
-        val bitmap = Bitmap.createBitmap(listView.measuredWidth, allitemsheight, Bitmap.Config.ARGB_8888)
+        val bitmap = createBitmap(listView.measuredWidth, allitemsheight)
         val canvas = Canvas(bitmap)
 
         val paint = Paint()
@@ -161,6 +161,7 @@ object ScreenShotUtils {
                         View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
                 holder.itemView.layout(0, 0, holder.itemView.measuredWidth,
                         holder.itemView.measuredHeight)
+                holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"))
                 holder.itemView.isDrawingCacheEnabled = true
                 holder.itemView.buildDrawingCache()
                 val drawingCache = holder.itemView.drawingCache
@@ -170,7 +171,7 @@ object ScreenShotUtils {
                 height += holder.itemView.measuredHeight
             }
 
-            bigBitmap = Bitmap.createBitmap(recyclerView.measuredWidth, height, Bitmap.Config.ARGB_8888)
+            bigBitmap = createBitmap(recyclerView.measuredWidth, height)
             val bigCanvas = Canvas(bigBitmap!!)
             val lBackground = recyclerView.background
             if (lBackground is ColorDrawable) {
@@ -195,6 +196,8 @@ object ScreenShotUtils {
      *  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
      *      WebView.enableSlowWholeDocumentDraw()
      *  }
+     *
+     *  WebView的截图很容易遇到内存溢出的问题，因为WebView可以加载很多内容，导致生成的图片特别长，创建Bitmap时容易OOM
      */
     fun captureWebView(webView: WebView): Bitmap?{
         //　重新调用WebView的measure方法测量实际View的大小（将测量模式设置为UNSPECIFIED模式也就是需要多大就可以获得多大的空间）
@@ -206,9 +209,9 @@ object ScreenShotUtils {
         webView.isDrawingCacheEnabled = true
         //　强制绘制缓存（必须在setDrawingCacheEnabled(true)之后才能调用，否者需要手动调用destroyDrawingCache()清楚缓存）
         webView.buildDrawingCache()
-        //　根据测量结果创建一个大小一样的bitmap
-        val bitmap = Bitmap.createBitmap(webView.measuredWidth,
-                webView.measuredHeight, Bitmap.Config.ARGB_8888)
+
+        val bitmap = createBitmap(webView.measuredWidth,webView.measuredHeight)
+
         //　已picture为背景创建一个画布
         val canvas = Canvas(bitmap)  // 画布的宽高和 WebView 的网页保持一致
         val paint = Paint()
@@ -219,5 +222,19 @@ object ScreenShotUtils {
         return bitmap
     }
 
+
+    /**
+     * 创建一个指定大小的bitmap
+     * 如果指定的宽高过大会造成内存溢出，这里做简单的处理，一般也不会截取这么大的图片
+     */
+    private fun createBitmap(width:Int , height:Int):Bitmap?{
+        return  try {
+            Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        }catch (e:OutOfMemoryError){
+            System.gc()
+            System.runFinalization()
+            Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        }
+    }
 
 }
