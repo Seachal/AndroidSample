@@ -2,14 +2,18 @@ package com.pinger.sample.screenshot
 
 import android.graphics.Bitmap
 import android.os.Build
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import android.widget.ListView
+import android.widget.ScrollView
 import com.fungo.baselib.base.basic.BaseActivity
-import com.fungo.imagego.ImageManager
 import com.pinger.sample.R
 import com.pinger.sample.data.DataProvider
 import kotlinx.android.synthetic.main.activity_screen_shot.*
@@ -23,7 +27,7 @@ import kotlinx.android.synthetic.main.activity_screen_shot.*
 class ScreenShotActivity : BaseActivity() {
 
     private var mBitmap:Bitmap?=null
-    private var mWebUrl = "https://blog.csdn.net/billy_zuo/article/details/71077681"
+    private var mWebUrl = "https://cloudfra.com/ssr-service.html"
 
     override val layoutResID: Int
         get() = R.layout.activity_screen_shot
@@ -31,42 +35,66 @@ class ScreenShotActivity : BaseActivity() {
     override fun initView() {
         setToolBar(getString(R.string.sample_screen_shot), true)
 
+        // WebView渲染开始之前加上
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             WebView.enableSlowWholeDocumentDraw()
         }
     }
 
-
-    private fun performShotView(view: View) {
-        view.postDelayed({
-            mBitmap = ScreenShotUtils.getScreenShotFromView(view)
-            showView.setImageBitmap(mBitmap)
-            dismissProgress()
-        },500)
-    }
-
-
+    /**
+     * 截取当前窗体
+     */
     fun onScreenShot(view: View) {
-        view.postDelayed({
-            mBitmap = ScreenShotUtils.getScreenShotFromWindow(this)
-            showView.setImageBitmap(mBitmap)
-            dismissProgress()
-        },500)
+        mBitmap = ScreenShotUtils.captureWindow(this)
+        showView.setImageBitmap(mBitmap)
     }
 
+
+    /**
+     * 截取当前窗体，不带状态栏,状态栏是空白的
+     */
+    fun onScreenShotNoStatus(view: View) {
+        mBitmap = ScreenShotUtils.captureWindow(this,false)
+        showView.setImageBitmap(mBitmap)
+    }
+
+
+
+    /**
+     * 常用的View截图，包括TextView，ImageView，FrameLayout，LinearLayout，RelativeLayout等
+     */
+    fun onScreenView(view: View) {
+        showProgress()
+        container.removeAllViews()
+        val rootView = layoutInflater.inflate(R.layout.screen_shot_view, container)
+        val layout = rootView.findViewById<LinearLayout>(R.id.layout)
+        layout.post({
+            mBitmap = ScreenShotUtils.captureView(layout)
+            showView.setImageBitmap(mBitmap)
+            dismissProgress()
+        })
+    }
+
+    /**
+     * 截取ScrollView，包括未展示的内容
+     */
     fun onScreenScrollView(view: View) {
         showProgress()
         container.removeAllViews()
         val rootView = layoutInflater.inflate(R.layout.screen_shot_scroll_view, container)
         val scrollView = rootView.findViewById<ScrollView>(R.id.scroll_view)
-        scrollView.postDelayed({
-            mBitmap = ScreenShotUtils.getScreenShotFromScrollView(scrollView)
+        scrollView.post({
+            mBitmap = ScreenShotUtils.captureScrollView(scrollView)
             showView.setImageBitmap(mBitmap)
             dismissProgress()
-        },500)
+        })
     }
 
 
+
+    /**
+     * 截取ListView，包括未展示的内容
+     */
     fun onScreenListView(view: View){
         showProgress()
         container.removeAllViews()
@@ -76,14 +104,39 @@ class ScreenShotActivity : BaseActivity() {
                 android.R.layout.simple_list_item_1, DataProvider.getData())
         listView.adapter = adapter
 
-        listView.postDelayed({
-            mBitmap = ScreenShotUtils.getScreenShotFromListView(listView)
+        listView.post({
+            mBitmap = ScreenShotUtils.captureListView(listView)
             showView.setImageBitmap(mBitmap)
             dismissProgress()
-        },500)
+        })
     }
 
 
+
+    /**
+     * 截取RecyclerView，包括未展示的内容
+     */
+    fun onScreenRecyclerView(view: View) {
+        showProgress()
+        container.removeAllViews()
+        val rootView = layoutInflater.inflate(R.layout.screen_recycler_view, container)
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerView)
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = RecyclerAdapter(this,DataProvider.getData())
+
+        recyclerView.post({
+            mBitmap = ScreenShotUtils.captureRecyclerView(recyclerView)
+            showView.setImageBitmap(mBitmap)
+            dismissProgress()
+        })
+    }
+
+
+
+    /**
+     * 截取WebView，包括整个高度，需要监听WebView加载完成，并且渲染完成才能够生成截图
+     */
     fun onScreenWebView(view: View) {
         showProgress()
         container.removeAllViews()
@@ -99,10 +152,11 @@ class ScreenShotActivity : BaseActivity() {
         webView.webChromeClient = object :WebChromeClient(){
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 if (newProgress == 100) {
+                    // 此时WebView加载完成了，但是不一定完成了渲染
                     webView.postDelayed({
-                        mBitmap = ScreenShotUtils.getScreenShotFromWebView(webView)
-                        showView.setImageBitmap(mBitmap)
                         dismissProgress()
+                        mBitmap = ScreenShotUtils.captureWebView(webView)
+                        showView.setImageBitmap(mBitmap)
                     },5000)
                 }
             }
@@ -111,68 +165,5 @@ class ScreenShotActivity : BaseActivity() {
     }
 
 
-    fun onScreenRecyclerView(view: View) {
 
-    }
-
-
-
-    /**
-     * ImageView截图
-     */
-    fun onScreenImageView(view: View) {
-        showProgress()
-        container.removeAllViews()
-        val url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530447508136&di=a78c9b30f2fbc1acfd1d0228b72f793b&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Ffaedab64034f78f018a4ae837f310a55b3191c16.jpg"
-        val rootView = layoutInflater.inflate(R.layout.screen_shot_image, container)
-        val imageView = rootView.findViewById<ImageView>(R.id.imageView)
-        ImageManager.instance.loadImage(url, imageView)
-        performShotView(imageView)
-    }
-
-
-    /**
-     * TextView截图
-     */
-    fun onScreenTextView(view: View) {
-        showProgress()
-        container.removeAllViews()
-        val rootView = layoutInflater.inflate(R.layout.screen_shot_text, container)
-        val textView = rootView.findViewById<TextView>(R.id.textView)
-        performShotView(textView)
-    }
-
-    /**
-     * FrameLayout截图
-     */
-    fun onScreenFrameLayout(view: View) {
-        showProgress()
-        container.removeAllViews()
-        val rootView = layoutInflater.inflate(R.layout.screen_shot_frame_layout, container)
-        val frameLayout = rootView.findViewById<FrameLayout>(R.id.frame_layout)
-        performShotView(frameLayout)
-    }
-
-
-    /**
-     * LinearLayout截图
-     */
-    fun onScreenLinearLayout(view: View) {
-        showProgress()
-        container.removeAllViews()
-        val rootView = layoutInflater.inflate(R.layout.screen_shot_linear_layout, container)
-        val linearLayout = rootView.findViewById<LinearLayout>(R.id.linear_layout)
-        performShotView(linearLayout)
-    }
-
-    /**
-     * RelativeLayout截图
-     */
-    fun onScreenRelativeLayout(view: View) {
-        showProgress()
-        container.removeAllViews()
-        val rootView = layoutInflater.inflate(R.layout.screen_shot_relative_layout, container)
-        val relativeLayout = rootView.findViewById<RelativeLayout>(R.id.relative_layout)
-        performShotView(relativeLayout)
-    }
 }

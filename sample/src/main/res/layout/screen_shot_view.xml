@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/linear_layout"
+    android:id="@+id/layout"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:background="@color/colorBrownPrimary"
+    android:background="@color/colorTealPrimary"
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
     <TextView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:text="LinearLayout容器文字条目１"
+        android:text="容器文字条目１"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:text="LinearLayout容器文字条目2"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:text="LinearLayout容器文字条目3"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:text="LinearLayout容器文字条目4"
+        android:text="容器文字条目2"
         android:layout_height="wrap_content" />
 
     <ImageView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:layout_width="wrap_content"
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="50dp"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:text="容器文字条目3"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:text="容器文字条目4"
+        android:layout_marginBottom="60dp"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

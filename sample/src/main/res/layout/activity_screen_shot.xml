@@ -32,45 +32,21 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:onClick="onScreenTextView"
-                android:text="TextView截图" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:onClick="onScreenImageView"
-                android:text="ImageView截图" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:onClick="onScreenFrameLayout"
-                android:text="FrameLayout截图" />
+                android:onClick="onScreenShotNoStatus"
+                android:text="截屏(不带状态栏)" />
 
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:onClick="onScreenLinearLayout"
-                android:text="LinearLayout截图" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:onClick="onScreenRelativeLayout"
-                android:text="RelativeLayout截图" />
+                android:onClick="onScreenView"
+                android:text="常用View截图" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:onClick="onScreenScrollView"
                 android:text="ScrollView截图" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:onClick="onScreenWebView"
-                android:text="WebView截图" />
 
 
             <Button
@@ -85,6 +61,11 @@
                 android:onClick="onScreenRecyclerView"
                 android:text="RecyclerView截图" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenWebView"
+                android:text="WebView截图" />
 
             <!--用来展示生成截图的ImageView-->
             <ImageView
