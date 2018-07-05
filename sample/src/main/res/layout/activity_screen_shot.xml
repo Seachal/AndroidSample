@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!--生成分享图片的布局，位于底层-->
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:id="@+id/containerScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="ifContentScrolls"
         android:background="@color/white"
+        android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp"
-            android:layout_height="wrap_content">
+            android:padding="12dp">
 
             <Button
                 android:layout_width="match_parent"
@@ -67,13 +67,20 @@
                 android:onClick="onScreenWebView"
                 android:text="WebView截图" />
 
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:onClick="onScreenDemo"
+                android:text="实际案例" />
+
             <!--用来展示生成截图的ImageView-->
             <ImageView
                 android:id="@+id/showView"
-                android:layout_marginTop="30dp"
-                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY" />
 
         </LinearLayout>
 

@@ -37,6 +37,7 @@ dependencies {
     implementation rootProject.ext.dependencies.kotlin
     implementation rootProject.ext.dependencies.appcompat_v7
     implementation rootProject.ext.dependencies.constraintlayout
+    implementation rootProject.ext.dependencies.cardview
 
     implementation 'com.github.PingerOne.Fungo:baselib:1.0.3'
     implementation 'com.github.PingerOne.Fungo:baseuilib:1.0.3'

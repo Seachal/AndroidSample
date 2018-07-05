@@ -16,6 +16,7 @@ import android.widget.ScrollView
  * @since 2018/7/1 下午5:27
  * 实现截屏和截图的工具类
  * 参考：[https://blog.csdn.net/billy_zuo/article/details/71077681]
+ * 参考:[https://github.com/PGSSoft/scrollscreenshot]
  */
 object ScreenShotUtils {
 
