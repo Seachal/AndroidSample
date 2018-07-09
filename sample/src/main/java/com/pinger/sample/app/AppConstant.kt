@@ -12,4 +12,6 @@ object AppConstant {
 
     const val SINA_APP_KEY = "2332189931"
     const val SINA_APP_SECRET = "0390444ae665f63dddb131774e527849"
+
+    const val WX_APP_ID = "wx034b46651d900064"
 }

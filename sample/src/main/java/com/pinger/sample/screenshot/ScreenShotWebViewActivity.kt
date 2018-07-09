@@ -53,6 +53,9 @@ class ScreenShotWebViewActivity : BaseActivity() {
     }
 
 
+    /**
+     * 截图WebView图片
+     */
     fun onCapture(view: View) {
         showProgress()
         webView.visibility = View.GONE
@@ -65,6 +68,9 @@ class ScreenShotWebViewActivity : BaseActivity() {
     }
 
 
+    /**
+     * 加载WebView
+     */
     fun onLoad(view: View) {
         webView.visibility = View.VISIBLE
         scrollView.visibility = View.GONE

@@ -24,7 +24,7 @@ import java.io.IOException
 /**
  * @author Pinger
  * @since 2018/7/1 上午1:43
- *
+ *　截图Demo
  */
 class ScreenShotActivity : BaseActivity() {
 
@@ -139,8 +139,7 @@ class ScreenShotActivity : BaseActivity() {
 
 
     /**
-     * 截取WebView，包括整个高度，需要监听WebView加载完成，并且渲染完成才能够生成截图
-     *
+     * 跳转到WebView截图页面
      */
     fun onScreenWebView(view: View) {
         startActivity(ScreenShotWebViewActivity::class.java)
@@ -148,16 +147,15 @@ class ScreenShotActivity : BaseActivity() {
 
 
     /**
-     * 实战案例，点击分享，生成一张自定义图片进行分享
+     * 实战案例，点击分享，生成一张自定义图片进行分享,如果有图片加载需要监听图片是否加载完成
      */
     fun onScreenDemo(view: View) {
         showProgress()
         container.removeAllViews()
         val rootView = layoutInflater.inflate(R.layout.screen_shot_demo, container)
-        // 设置生成图片的内容
-
-        rootView.post({
-            mBitmap = ScreenShotUtils.captureView(rootView)
+        val scrollView = rootView.findViewById<ScrollView>(R.id.scrollView)
+        scrollView.post({
+            mBitmap = ScreenShotUtils.captureScrollView(scrollView)
             showView.setImageBitmap(mBitmap)
             dismissProgress()
         })
@@ -165,6 +163,9 @@ class ScreenShotActivity : BaseActivity() {
     }
 
 
+    /**
+     * 调用系统API分享图片
+     */
     private fun shareImage() {
         if (mBitmap == null) {
             ToastUtils.showToast("请先生成截图")
@@ -177,6 +178,11 @@ class ScreenShotActivity : BaseActivity() {
     }
 
 
+    /**
+     * 保存图片到本地文件
+     * @param bitmap 图片对象
+     * @return 保存的文件
+     */
     private fun saveBitmap(bitmap: Bitmap?): File? {
         val appDir = File(Environment.getExternalStorageDirectory(), "Images")
         if (!appDir.exists()) {
