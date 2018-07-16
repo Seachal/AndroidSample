@@ -4,5 +4,6 @@
     <string name="sample_splash">项目启动优化</string>
     <string name="sample_screen_shot_web_view">WebView截图</string>
     <string name="sample_toast">自定义吐司</string>
+    <string name="sample_point_nine">点9图</string>
 
 </resources>

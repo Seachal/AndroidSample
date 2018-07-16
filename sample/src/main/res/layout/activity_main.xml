@@ -26,12 +26,17 @@
             android:text="@string/sample_screen_shot" />
 
 
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:onClick="onShowToast"
             android:text="@string/sample_toast" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onPointNine"
+            android:text="@string/sample_point_nine" />
 
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.pinger.sample.app
 import android.view.View
 import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
+import com.pinger.sample.pointnine.PointNineActivity
 import com.pinger.sample.screenshot.ScreenShotActivity
 import com.pinger.sample.splash.SplashActivity
 import com.pinger.sample.toast.ToastActivity
@@ -28,6 +29,10 @@ class MainActivity : BaseActivity() {
 
     fun onShowToast(view: View) {
         startActivity(ToastActivity::class.java)
+    }
+
+    fun onPointNine(view: View) {
+        startActivity(PointNineActivity::class.java)
     }
 
 }
