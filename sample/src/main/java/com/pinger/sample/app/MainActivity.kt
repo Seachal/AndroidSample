@@ -5,6 +5,7 @@ import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
 import com.pinger.sample.flowlayout.FlowLayoutActivity
 import com.pinger.sample.pointnine.PointNineActivity
+import com.pinger.sample.screenrotate.ScreenRotateActivity
 import com.pinger.sample.screenshot.ScreenShotActivity
 import com.pinger.sample.splash.SplashActivity
 import com.pinger.sample.toast.ToastActivity
@@ -38,6 +39,10 @@ class MainActivity : BaseActivity() {
 
     fun onFlowLayout(view: View) {
         startActivity(FlowLayoutActivity::class.java)
+    }
+
+    fun onScreenRotate(view: View) {
+        startActivity(ScreenRotateActivity::class.java)
     }
 
 }

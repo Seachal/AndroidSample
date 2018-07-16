@@ -44,6 +44,12 @@
             android:onClick="onFlowLayout"
             android:text="@string/sample_flow_layout" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onScreenRotate"
+            android:text="@string/sample_screen_rotate" />
+
 
     </LinearLayout>
 

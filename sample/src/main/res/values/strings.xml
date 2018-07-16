@@ -6,5 +6,6 @@
     <string name="sample_toast">自定义吐司</string>
     <string name="sample_point_nine">点9图</string>
     <string name="sample_flow_layout">流式布局</string>
+    <string name="sample_screen_rotate">重力感应屏幕旋转</string>
 
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.pinger.sample">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pinger.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,7 +9,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!--自定义吐司需要-->
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!--重力感应-->
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+
 
     <application
         android:name=".app.SampleApplication"
@@ -21,9 +28,9 @@
 
         <activity android:name=".app.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".screenshot.ScreenShotActivity" />
@@ -32,8 +39,11 @@
         <activity android:name=".toast.ToastActivity" />
         <activity android:name=".pointnine.PointNineActivity" />
         <activity android:name=".flowlayout.FlowLayoutActivity" />
+        <activity
+            android:name=".screenrotate.ScreenRotateActivity"
+            android:configChanges="orientation|screenSize" />
 
-        <service android:name=".splash.InitializeService"/>
+        <service android:name=".splash.InitializeService" />
 
     </application>
 
