@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!--自定义吐司需要-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:name=".app.SampleApplication"
         android:allowBackup="true"
@@ -26,6 +29,7 @@
         <activity android:name=".screenshot.ScreenShotActivity" />
         <activity android:name=".splash.SplashActivity" />
         <activity android:name=".screenshot.ScreenShotWebViewActivity" />
+        <activity android:name=".toast.ToastActivity" />
 
         <service android:name=".splash.InitializeService"/>
 

@@ -26,6 +26,14 @@
             android:text="@string/sample_screen_shot" />
 
 
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onShowToast"
+            android:text="@string/sample_toast" />
+
+
     </LinearLayout>
 
 </ScrollView>

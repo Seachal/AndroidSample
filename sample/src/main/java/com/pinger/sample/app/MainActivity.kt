@@ -5,6 +5,7 @@ import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
 import com.pinger.sample.screenshot.ScreenShotActivity
 import com.pinger.sample.splash.SplashActivity
+import com.pinger.sample.toast.ToastActivity
 
 /**
  * @author Pinger
@@ -22,6 +23,11 @@ class MainActivity : BaseActivity() {
 
     fun onScreenShot(view: View) {
         startActivity(ScreenShotActivity::class.java)
+    }
+
+
+    fun onShowToast(view: View) {
+        startActivity(ToastActivity::class.java)
     }
 
 }

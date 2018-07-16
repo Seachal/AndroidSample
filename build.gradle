@@ -2,7 +2,9 @@
 // 导入自定义的配置文件
 apply from: "config.gradle"
 
-buildscript {
+buildscript { 
+    ext.kotlin_version = '1.2.30'
+
     repositories {
         jcenter()
         google()
@@ -12,7 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.30"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-    }
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
 }
 
 allprojects {
