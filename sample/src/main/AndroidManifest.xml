@@ -31,6 +31,7 @@
         <activity android:name=".screenshot.ScreenShotWebViewActivity" />
         <activity android:name=".toast.ToastActivity" />
         <activity android:name=".pointnine.PointNineActivity" />
+        <activity android:name=".flowlayout.FlowLayoutActivity" />
 
         <service android:name=".splash.InitializeService"/>
 

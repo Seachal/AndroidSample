@@ -38,6 +38,12 @@
             android:onClick="onPointNine"
             android:text="@string/sample_point_nine" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onFlowLayout"
+            android:text="@string/sample_flow_layout" />
+
 
     </LinearLayout>
 
