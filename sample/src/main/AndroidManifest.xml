@@ -41,7 +41,8 @@
         <activity android:name=".flowlayout.FlowLayoutActivity" />
         <activity
             android:name=".screenrotate.ScreenRotateActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
 
         <service android:name=".splash.InitializeService" />
 

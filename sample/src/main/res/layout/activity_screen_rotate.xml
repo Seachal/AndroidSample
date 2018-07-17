@@ -6,17 +6,18 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:scaleType="center"
-        android:src="@mipmap/ic_test" />
+        android:src="@mipmap/ic_test"
+        app:layout_constraintDimensionRatio="w,9:16" />
 
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:onClick="scaleFull"
         android:padding="10dp"
-        android:src="@mipmap/ic_scale"
+        android:src="@mipmap/ic_fullscreen"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView" />
 

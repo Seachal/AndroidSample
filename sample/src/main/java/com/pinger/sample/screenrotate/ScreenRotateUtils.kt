@@ -206,7 +206,7 @@ class ScreenRotateUtils(context: Context) {
      * @param isLandscape
      * @param isNeedChangeOrientation 是否需要改变判断值
      */
-    private fun changeOrientation(isLandscape: Boolean, isNeedChangeOrientation: Boolean) {
+    private fun setOrientation(isLandscape: Boolean, isNeedChangeOrientation: Boolean) {
         if (isLandscape) {
             // 切换成竖屏
             mActivity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -216,6 +216,11 @@ class ScreenRotateUtils(context: Context) {
             mActivity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             if (isNeedChangeOrientation) this.isLandscape = true
         }
+    }
+
+    fun setOrientation(isLandscape: Boolean) {
+        setOrientation(isLandscape, false)
+        this.isLandscape = !this.isLandscape
     }
 
 
@@ -248,7 +253,6 @@ class ScreenRotateUtils(context: Context) {
         return this.isLandscape
     }
 
-
     /**
      * 设置系统横竖屏按钮是否生效，默认无效
      *
@@ -272,7 +276,7 @@ class ScreenRotateUtils(context: Context) {
 
                 // 如果用户禁用掉了重力感应就直接切换
                 if (isRotate == 0) {
-                    changeOrientation(isLandscape, true)
+                    setOrientation(isLandscape, true)
                     return
                 }
             } catch (e: Settings.SettingNotFoundException) {
@@ -287,11 +291,11 @@ class ScreenRotateUtils(context: Context) {
         isOpenSensor = false
         isClickFullScreen = true
         if (isChangeOrientation) {
-            changeOrientation(isLandscape, false)
+            setOrientation(isLandscape, false)
         } else {
-            isLandscape = !isLandscape
-            changeOrientation(isLandscape, false)
+            setOrientation(isLandscape, false)
         }
+        isLandscape = !isLandscape
     }
 
     init {

@@ -2,10 +2,12 @@ package com.pinger.sample.screenrotate
 
 import android.content.res.Configuration
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
+import kotlinx.android.synthetic.main.activity_screen_rotate.*
 
 
 /**
@@ -14,6 +16,7 @@ import com.pinger.sample.R
  */
 
 class ScreenRotateActivity : BaseActivity() {
+
 
     override val layoutResID: Int
         get() = R.layout.activity_screen_rotate
@@ -40,11 +43,23 @@ class ScreenRotateActivity : BaseActivity() {
         super.onConfigurationChanged(newConfig)
 
         if (ScreenRotateUtils.getInstance(this).isLandscape()) {
+            supportActionBar?.hide()
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
             Toast.makeText(this, "当前为横屏", Toast.LENGTH_SHORT).show()
-            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+            val params = imageView.layoutParams
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT
+            imageView.layoutParams = params
         } else {
+            supportActionBar?.show()
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             Toast.makeText(this, "当前为竖屏", Toast.LENGTH_SHORT).show()
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+            val params = imageView.layoutParams
+            params.width = ViewGroup.LayoutParams.MATCH_PARENT
+            params.height = resources.displayMetrics.widthPixels * 9 / 16
+            imageView.layoutParams = params
         }
     }
 
@@ -57,4 +72,11 @@ class ScreenRotateActivity : BaseActivity() {
         ScreenRotateUtils.getInstance(this).stop()
     }
 
+    override fun onBackPressed() {
+        if (ScreenRotateUtils.getInstance(this).isLandscape()) {
+            ScreenRotateUtils.getInstance(this).setOrientation(true)
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
