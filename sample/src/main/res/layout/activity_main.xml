@@ -50,6 +50,12 @@
             android:onClick="onScreenRotate"
             android:text="@string/sample_screen_rotate" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onSlideLayout"
+            android:text="@string/sample_slide_layout" />
+
 
     </LinearLayout>
 

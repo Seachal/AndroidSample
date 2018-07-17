@@ -43,6 +43,7 @@
             android:name=".screenrotate.ScreenRotateActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity android:name=".slidelayout.SlideLayoutActivity" />
 
         <service android:name=".splash.InitializeService" />
 
