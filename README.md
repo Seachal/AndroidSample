@@ -9,3 +9,5 @@
 * [点九图简单制作教程](sample/src/main/java/com/pinger/sample/pointnine/点九图简单制作教程.md)
 
 * [自定义View实现流式布局](sample/src/main/java/com/pinger/sample/flowlayout/自定义View实现流式布局.md)
+
+* [重力感应屏幕旋转](sample/src/main/java/com/pinger/sample/screenrotate/重力感应屏幕旋转.md)
