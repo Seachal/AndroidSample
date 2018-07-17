@@ -11,3 +11,5 @@
 * [自定义View实现流式布局](sample/src/main/java/com/pinger/sample/flowlayout/自定义View实现流式布局.md)
 
 * [重力感应屏幕旋转](sample/src/main/java/com/pinger/sample/screenrotate/重力感应屏幕旋转.md)
+
+* [3D侧滑](sample/src/main/java/com/pinger/sample/slidelayout/3D侧滑.md)
