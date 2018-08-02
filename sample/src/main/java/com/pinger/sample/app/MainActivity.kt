@@ -1,7 +1,11 @@
 package com.pinger.sample.app
 
+import android.content.DialogInterface
+import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.View
 import com.fungo.baselib.base.basic.BaseActivity
+import com.fungo.baselib.utils.ToastUtils
 import com.pinger.sample.R
 import com.pinger.sample.alphabar.AlphaBarActivity
 import com.pinger.sample.flowlayout.FlowLayoutActivity
@@ -54,5 +58,4 @@ class MainActivity : BaseActivity() {
     fun onAlphaBar(view: View) {
         startActivity(AlphaBarActivity::class.java)
     }
-
 }
