@@ -3,6 +3,7 @@ package com.pinger.sample.app
 import android.view.View
 import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
+import com.pinger.sample.alphabar.AlphaBarActivity
 import com.pinger.sample.flowlayout.FlowLayoutActivity
 import com.pinger.sample.pointnine.PointNineActivity
 import com.pinger.sample.screenrotate.ScreenRotateActivity
@@ -48,6 +49,10 @@ class MainActivity : BaseActivity() {
 
     fun onSlideLayout(view: View) {
         startActivity(SlideLayoutActivity::class.java)
+    }
+
+    fun onAlphaBar(view: View) {
+        startActivity(AlphaBarActivity::class.java)
     }
 
 }

@@ -44,6 +44,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity android:name=".slidelayout.SlideLayoutActivity" />
+        <activity android:name=".alphabar.AlphaBarActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <service android:name=".splash.InitializeService" />
 

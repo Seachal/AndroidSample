@@ -56,6 +56,11 @@
             android:onClick="onSlideLayout"
             android:text="@string/sample_slide_layout" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:onClick="onAlphaBar"
+            android:text="@string/sample_alpha_bar" />
 
     </LinearLayout>
 

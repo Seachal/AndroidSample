@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:foreground="?android:selectableItemBackgroundBorderless">
 
 
     <ImageView
         android:id="@+id/ivAvatar"
-    android:layout_margin="12dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:text="万合天宜"
-        android:layout_marginLeft="12dp"
-        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-        app:layout_constraintTop_toTopOf="@+id/ivAvatar"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:text="万合天宜"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+        app:layout_constraintTop_toTopOf="@+id/ivAvatar" />
 
 
     <TextView
         android:id="@+id/tvDesc"
-        android:text="万合天宜的描述"
-        android:layout_marginLeft="12dp"
-        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-        app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:text="万合天宜的描述"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar" />
 
 </android.support.constraint.ConstraintLayout>
