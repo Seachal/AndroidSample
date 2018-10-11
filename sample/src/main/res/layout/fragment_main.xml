@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbars="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+
+        <Button
+            android:id="@+id/onSplash"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_splash" />
+
+        <Button
+            android:id="@+id/onScreenShot"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_screen_shot" />
+
+
+        <Button
+            android:id="@+id/onShowToast"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_toast" />
+
+        <Button
+            android:id="@+id/onPointNine"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_point_nine" />
+
+        <Button
+            android:id="@+id/onFlowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_flow_layout" />
+
+        <Button
+            android:id="@+id/onScreenRotate"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_screen_rotate" />
+
+        <Button
+            android:id="@+id/onSlideLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_slide_layout" />
+
+        <Button
+            android:id="@+id/onAlphaBar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/sample_alpha_bar" />
+
+    </LinearLayout>
+
+</ScrollView>

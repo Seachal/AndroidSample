@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AndroidSample</string>
+    <string name="sample_screen_shot">截屏和截图分享</string>
+    <string name="sample_splash">项目启动优化</string>
+    <string name="sample_screen_shot_web_view">WebView截图</string>
+    <string name="sample_toast">自定义吐司</string>
+    <string name="sample_point_nine">点9图</string>
+    <string name="sample_flow_layout">流式布局</string>
+    <string name="sample_screen_rotate">重力感应屏幕旋转</string>
+    <string name="sample_slide_layout">3D侧滑</string>
+    <string name="sample_alpha_bar">滑动渐变标题</string>
+
+</resources>

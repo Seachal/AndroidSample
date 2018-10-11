@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--生成分享图片的布局，位于底层-->
+    <FrameLayout
+        android:id="@+id/imageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <Button
+                android:id="@+id/onScreenShot"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="截屏" />
+
+            <Button
+                android:id="@+id/onScreenShotNoStatus"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="截屏(不带状态栏)" />
+
+
+            <Button
+                android:id="@+id/onScreenView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="常用View截图" />
+
+            <Button
+                android:id="@+id/onScreenScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="ScrollView截图" />
+
+
+            <Button
+                android:id="@+id/onScreenListView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="ListView截图" />
+
+            <Button
+                android:id="@+id/onScreenRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="RecyclerView截图" />
+
+            <Button
+                android:id="@+id/onScreenWebView"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="WebView截图" />
+
+
+            <Button
+                android:id="@+id/onScreenDemo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="实际案例" />
+
+            <!--用来展示生成截图的ImageView-->
+            <ImageView
+                android:id="@+id/showView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>
+

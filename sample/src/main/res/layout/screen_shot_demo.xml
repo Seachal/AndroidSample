@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/ivBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_screen_shot_view_bg" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:lineSpacingExtra="3dp"
+            android:text="我是内容我是内容我是内容我是内容我是内容我是内容我我是内容我是内容我是内容我是内容我是内容我是内容我是内容是内容我是内容我是内容我是内容我是内容我是内容我是内容我我是内容我是内容我是内容我是内容我是内容我是内容我是内容是内容"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F2F2F2"
+            android:drawablePadding="24dp"
+            android:drawableTop="@mipmap/ic_code"
+            android:gravity="center_horizontal"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            android:text="努力学习技术打破这片天地"
+            android:textColor="@android:color/black" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>
