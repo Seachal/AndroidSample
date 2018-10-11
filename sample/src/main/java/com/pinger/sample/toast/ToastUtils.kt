@@ -116,7 +116,6 @@ class ToastUtils(context: Context) {
         var startY = 0
         // 设置吐司的触摸滑动事件
         mView!!.setOnTouchListener { _, event ->
-
             when (event.action) {
                 MotionEvent.ACTION_DOWN // 按下
                 -> {

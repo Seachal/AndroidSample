@@ -17,7 +17,6 @@ import com.pinger.sample.R
 class RecyclerAdapter(private val context: Context, val data: ArrayList<String>) : RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerHolder {
         return RecyclerHolder(LayoutInflater.from(context).inflate(R.layout.holder_recycler, null))
-
     }
 
     override fun getItemCount(): Int {

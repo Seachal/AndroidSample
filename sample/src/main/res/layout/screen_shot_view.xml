@@ -42,5 +42,4 @@
         android:gravity="center"
         android:text="容器文字条目4" />
 
-
 </LinearLayout>

@@ -3,10 +3,10 @@ package com.pinger.sample.splash
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.view.ViewStub
 import android.widget.Toast
 import com.fungo.baselib.base.basic.BaseActivity
 import com.pinger.sample.R
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.layout_main_content.*
 import java.lang.ref.WeakReference
 
@@ -16,6 +16,8 @@ class SplashActivity(override val layoutResID: Int = R.layout.activity_splash) :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val viewStub = findViewById<ViewStub>(R.id.viewStub)
 
         println("==========start--填充SplashFragment--start==========")
         // 1.初始化SplashFragment，填充Splash
@@ -47,8 +49,8 @@ class SplashActivity(override val layoutResID: Int = R.layout.activity_splash) :
     private fun initMainData() {
         println("==========start--加载MainActivity数据--start==========")
         Toast.makeText(this, "数据加载完毕", Toast.LENGTH_SHORT).show()
-
     }
+
 
     /**
      * 延时关闭
@@ -59,6 +61,7 @@ class SplashActivity(override val layoutResID: Int = R.layout.activity_splash) :
         override fun run() {
             val context = contextRef.get() as SplashActivity
             context.pop()
+
             println("==========start--移除SplashFragment--start==========")
         }
     }
