@@ -51,4 +51,6 @@ class MainFragment : BasePageFragment() {
     override fun getPageTitle(): String? {
         return getString(R.string.app_name)
     }
+
+    override fun isSwipeBackEnable(): Boolean = false
 }

@@ -39,7 +39,8 @@
 
         <service android:name=".splash.InitializeService" />
 
-        <activity android:name=".splash.SplashActivity" />
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/BaseAppTheme.SwipeBack"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
