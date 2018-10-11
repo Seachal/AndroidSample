@@ -56,6 +56,7 @@ object ScreenShotUtils {
 
         view.isDrawingCacheEnabled = false
         view.destroyDrawingCache()
+
         return bitmap
     }
 
@@ -224,7 +225,6 @@ object ScreenShotUtils {
      *  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
      *      WebView.enableSlowWholeDocumentDraw()
      *  }
-     *
      *  WebView的截图很容易遇到内存溢出的问题，因为WebView可以加载很多内容，导致生成的图片特别长，创建Bitmap时容易OOM
      */
     fun captureWebView(webView: WebView): Bitmap? {
