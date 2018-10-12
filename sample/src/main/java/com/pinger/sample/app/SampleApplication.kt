@@ -10,5 +10,16 @@ import com.fungo.baselib.app.BaseApplication
 
 class SampleApplication : BaseApplication() {
 
+    override fun getCurrentEnvModel(): Int {
+        return 0
+    }
+
+    override fun initSDK() {
+    }
+
+    override fun isInnerUseModel(): Boolean {
+        return false
+    }
+
 
 }

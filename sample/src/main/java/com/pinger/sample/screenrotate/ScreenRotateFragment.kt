@@ -47,7 +47,7 @@ class ScreenRotateFragment : BasePageFragment() {
         super.onConfigurationChanged(newConfig)
 
         if (ScreenRotateUtils.getInstance(context!!).isLandscape()) {
-            getPageActivity()!!.supportActionBar?.hide()
+            setShowToolBar(false)
             getPageActivity()!!.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
             Toast.makeText(context!!, "当前为横屏", Toast.LENGTH_SHORT).show()
 
@@ -56,7 +56,8 @@ class ScreenRotateFragment : BasePageFragment() {
             params.height = ViewGroup.LayoutParams.MATCH_PARENT
             imageView.layoutParams = params
         } else {
-            getPageActivity()!!.supportActionBar?.show()
+            setShowToolBar(true)
+
             getPageActivity()!!.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             Toast.makeText(context!!, "当前为竖屏", Toast.LENGTH_SHORT).show()
 
