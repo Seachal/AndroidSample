@@ -131,7 +131,7 @@ class ScreenShotFragment : BasePageFragment() {
         imageContainer.removeAllViews()
         val rootView = layoutInflater.inflate(R.layout.screen_shot_list_view, imageContainer)
         val listView = rootView.findViewById<ListView>(R.id.listView)
-        val adapter = ArrayAdapter<String>(context,
+        val adapter = ArrayAdapter<String>(context!!,
                 android.R.layout.simple_list_item_1, DataProvider.getData())
         listView.adapter = adapter
 

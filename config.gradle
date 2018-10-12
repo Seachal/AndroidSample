@@ -5,7 +5,7 @@ ext {
     // android的依赖
     android = [
             compileSdkVersion: 28,
-            buildToolsVersion: '28.0.0',
+            buildToolsVersion: '28.0.2',
             minSdkVersion    : 16,
             targetSdkVersion : 28,
             versionCode      : 1000,
@@ -20,7 +20,7 @@ ext {
             cardview          : 'com.android.support:cardview-v7:28.0.0',
             recyclerview      : 'com.android.support:recyclerview-v7:28.0.0',
             constraintlayout  : 'com.android.support.constraint:constraint-layout:1.0.2',
-            kotlin            : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.30',
+            kotlin            : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.70',
     ]
 
     signingConfigs = [
